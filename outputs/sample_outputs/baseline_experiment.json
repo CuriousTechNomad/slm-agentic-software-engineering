@@ -1,0 +1,8 @@
+{
+    "experiment": "baseline",
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "tasks": 3,
+    "average_inference_time": 18.24,
+    "average_input_tokens": 792.3333333333334,
+    "average_output_tokens": 300.0
+}
