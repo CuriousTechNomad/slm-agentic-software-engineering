@@ -1,0 +1,5 @@
+Metric,Baseline SLM,Multi-Agent Workflow
+Tasks,3.0,1.0
+Average Inference Time (sec),18.24,1971.2
+Average Input Tokens,792.33,1873.0
+Average Output Tokens,300.0,600.0

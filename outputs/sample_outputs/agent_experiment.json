@@ -1,0 +1,13 @@
+{
+    "experiment": "multi_agent",
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "agents": 5,
+    "tasks": 1,
+    "workflow": [
+        "Task Planner",
+        "Repository Investigator",
+        "Root Cause Analyst",
+        "Solution Architect",
+        "Code Reviewer"
+    ]
+}

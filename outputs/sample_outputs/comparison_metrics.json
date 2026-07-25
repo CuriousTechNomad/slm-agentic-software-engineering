@@ -1,0 +1,22 @@
+[
+  {
+    "Metric":"Tasks",
+    "Baseline SLM":3.0,
+    "Multi-Agent Workflow":1.0
+  },
+  {
+    "Metric":"Average Inference Time (sec)",
+    "Baseline SLM":18.24,
+    "Multi-Agent Workflow":1971.2
+  },
+  {
+    "Metric":"Average Input Tokens",
+    "Baseline SLM":792.33,
+    "Multi-Agent Workflow":1873.0
+  },
+  {
+    "Metric":"Average Output Tokens",
+    "Baseline SLM":300.0,
+    "Multi-Agent Workflow":600.0
+  }
+]
