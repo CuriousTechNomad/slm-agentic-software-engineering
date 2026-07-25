@@ -1,0 +1,6 @@
+{
+    "examples": 1,
+    "avg_instruction_length": 83.0,
+    "avg_input_length": 230.0,
+    "avg_output_length": 3345.0
+}
