@@ -1,0 +1,8 @@
+{
+    "model_name": "unsloth/Qwen2.5-0.5B",
+    "dataset_size": 1,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "training_time_seconds": 21.0,
+    "seed": 42
+}
