@@ -1,0 +1,36 @@
+
+============================================================
+FINAL PROJECT SUMMARY
+============================================================
+
+Evaluation Tasks
+----------------
+Official Dataset : 20
+
+Baseline Tested  : 3
+
+Agent Tested     : 1
+
+Fine-Tuned Tested: 3
+
+============================================================
+
+Average Inference Time
+
+Baseline     : 18.24
+
+Multi-Agent  : 1971.20
+
+Fine-Tuned   : 11.00
+
+============================================================
+
+Average Keyword Coverage
+
+Baseline     : 0.315
+
+Multi-Agent  : 0.286
+
+Fine-Tuned   : 1.000
+
+============================================================

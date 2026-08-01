@@ -1,0 +1,7 @@
+{
+    "baseline_tasks": 3,
+    "agent_tasks": 1,
+    "finetuned_tasks": 3,
+    "time_improvement_percent": 39.68,
+    "keyword_improvement_percent": 217.46
+}

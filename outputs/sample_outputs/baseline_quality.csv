@@ -1,0 +1,156 @@
+instance_id,repo,problem_statement,base_commit,inference_time,input_tokens,output_tokens,response,success,keyword_coverage,response_words
+pallets__flask-4045,pallets/flask,"Raise error when blueprint name contains a dot
+This is required since every dot is now significant since blueprints can be nested. An error was already added for endpoint names in 1.0, but should have been added for this as well.
+",d8c37f43724cd9fb0870f77877b7c4c7e38a19e0,19.4,107,300,"### Analysis
+
+#### 1. Root Cause
+
+The root cause of this issue lies in the current design and implementation of Flask's blueprint system. Blueprints in Flask allow for modular and reusable components within an application. They can be nested, which means that a blueprint can be defined within another blueprint. This nesting introduces a level of complexity where the structure of the blueprint names becomes significant. The requirement to raise an error when a blueprint name contains a dot stems from the need to ensure that blueprint names remain unique and unambiguous, especially when they are nested. If a blueprint name contains a dot, it could lead to ambiguity or conflicts, making it difficult to manage and understand the structure of the application.
+
+#### 2. Files Likely Involved
+
+Several files in the `flask` repository are likely to be involved in addressing this issue:
+
+- **`flask/blueprints.py`**: This file contains the core logic for handling blueprints, including their registration and management.
+- **`flask/__init__.py`**: This file includes the main entry point for the Flask application and may contain the necessary checks and error handling.
+- **`tests/test_blueprints.py`**: This file likely contains unit tests related to blueprint functionality, including tests for error handling.
+- **`docs/changes.rst`**: Documentation changes might be needed to reflect the new behavior and provide guidance on how to handle blueprint names with dots.
+
+#### 3. High-Level Implementation Plan
+
+To address this issue,",True,0.524,230
+pytest-dev__pytest-11143,pytest-dev/pytest,"Rewrite fails when first expression of file is a number and mistaken as docstring 
+<!--
+Thanks for submitting an issue!
+
+Quick check-list while reporting bugs:
+-->
+
+- [x] a detailed description of the bug or problem you are having
+- [x] output of `pip list` from the virtual environment you are using
+- [x] pytest and operating system versions
+- [x] minimal example if possible
+```
+Installing collected packages: zipp, six, PyYAML, python-dateutil, MarkupSafe, importlib-metadata, watchdog, tomli, soupsieve, pyyaml-env-tag, pycparser, pluggy, packaging, mergedeep, Markdown, jinja2, iniconfig, ghp-import, exceptiongroup, click, websockets, urllib3, tqdm, smmap, pytest, pyee, mkdocs, lxml, importlib-resources, idna, cssselect, charset-normalizer, cffi, certifi, beautifulsoup4, attrs, appdirs, w3lib, typing-extensions, texttable, requests, pyzstd, pytest-metadata, pyquery, pyppmd, pyppeteer, pynacl, pymdown-extensions, pycryptodomex, pybcj, pyasn1, py, psutil, parse, multivolumefile, mkdocs-autorefs, inflate64, gitdb, fake-useragent, cryptography, comtypes, bs4, brotli, bcrypt, allure-python-commons, xlwt, xlrd, rsa, requests-html, pywinauto, python-i18n, python-dotenv, pytest-rerunfailures, pytest-html, pytest-check, PySocks, py7zr, paramiko, mkdocstrings, loguru, GitPython, ftputil, crcmod, chardet, brotlicffi, allure-pytest
+Successfully installed GitPython-3.1.31 Markdown-3.3.7 MarkupSafe-2.1.3 PySocks-1.7.1 PyYAML-6.0 allure-pytest-2.13.2 allure-python-commons-2.13.2 appdirs-1.4.4 attrs-23.1.0 bcrypt-4.0.1 beautifulsoup4-4.12.2 brotli-1.0.9 brotlicffi-1.0.9.2 bs4-0.0.1 certifi-2023.5.7 cffi-1.15.1 chardet-5.1.0 charset-normalizer-3.1.0 click-8.1.3 comtypes-1.2.0 crcmod-1.7 cryptography-41.0.1 cssselect-1.2.0 exceptiongroup-1.1.1 fake-useragent-1.1.3 ftputil-5.0.4 ghp-import-2.1.0 gitdb-4.0.10 idna-3.4 importlib-metadata-6.7.0 importlib-resources-5.12.0 inflate64-0.3.1 iniconfig-2.0.0 jinja2-3.1.2 loguru-0.7.0 lxml-4.9.2 mergedeep-1.3.4 mkdocs-1.4.3 mkdocs-autorefs-0.4.1 mkdocstrings-0.22.0 multivolumefile-0.2.3 packaging-23.1 paramiko-3.2.0 parse-1.19.1 pluggy-1.2.0 psutil-5.9.5 py-1.11.0 py7zr-0.20.5 pyasn1-0.5.0 pybcj-1.0.1 pycparser-2.21 pycryptodomex-3.18.0 pyee-8.2.2 pymdown-extensions-10.0.1 pynacl-1.5.0 pyppeteer-1.0.2 pyppmd-1.0.0 pyquery-2.0.0 pytest-7.4.0 pytest-check-2.1.5 pytest-html-3.2.0 pytest-metadata-3.0.0 pytest-rerunfailures-11.1.2 python-dateutil-2.8.2 python-dotenv-1.0.0 python-i18n-0.3.9 pywinauto-0.6.6 pyyaml-env-tag-0.1 pyzstd-0.15.9 requests-2.31.0 requests-html-0.10.0 rsa-4.9 six-1.16.0 smmap-5.0.0 soupsieve-2.4.1 texttable-1.6.7 tomli-2.0.1 tqdm-4.65.0 typing-extensions-4.6.3 urllib3-1.26.16 w3lib-2.1.1 watchdog-3.0.0 websockets-10.4 xlrd-2.0.1 xlwt-1.3.0 zipp-3.15.0
+```
+use `pytest -k xxx`， report an error：`TypeError: argument of type 'int' is not iterable`
+
+it seems a error in collecting testcase
+```
+==================================== ERRORS ====================================
+_ ERROR collecting testcases/基线/代理策略/SOCKS二级代理迭代二/在线用户/在线用户更新/上线用户/test_socks_user_011.py _
+/usr/local/lib/python3.8/site-packages/_pytest/runner.py:341: in from_call
+    result: Optional[TResult] = func()
+/usr/local/lib/python3.8/site-packages/_pytest/runner.py:372: in <lambda>
+    call = CallInfo.from_call(lambda: list(collector.collect()), ""collect"")
+/usr/local/lib/python3.8/site-packages/_pytest/python.py:531: in collect
+    self._inject_setup_module_fixture()
+/usr/local/lib/python3.8/site-packages/_pytest/python.py:545: in _inject_setup_module_fixture
+    self.obj, (""setUpModule"", ""setup_module"")
+/usr/local/lib/python3.8/site-packages/_pytest/python.py:310: in obj
+    self._obj = obj = self._getobj()
+/usr/local/lib/python3.8/site-packages/_pytest/python.py:528: in _getobj
+    return self._importtestmodule()
+/usr/local/lib/python3.8/site-packages/_pytest/python.py:617: in _importtestmodule
+    mod = import_path(self.path, mode=importmode, root=self.config.rootpath)
+/usr/local/lib/python3.8/site-packages/_pytest/pathlib.py:565: in import_path
+    importlib.import_module(module_name)
+/usr/local/lib/python3.8/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1014: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:991: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:975: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:671: in _load_unlocked
+    ???
+/usr/local/lib/python3.8/site-packages/_pytest/assertion/rewrite.py:169: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+/usr/local/lib/python3.8/site-packages/_pytest/assertion/rewrite.py:352: in _rewrite_test
+    rewrite_asserts(tree, source, strfn, config)
+/usr/local/lib/python3.8/site-packages/_pytest/assertion/rewrite.py:413: in rewrite_asserts
+    AssertionRewriter(module_path, config, source).run(mod)
+/usr/local/lib/python3.8/site-packages/_pytest/assertion/rewrite.py:695: in run
+    if self.is_rewrite_disabled(doc):
+/usr/local/lib/python3.8/site-packages/_pytest/assertion/rewrite.py:760: in is_rewrite_disabled
+    return ""PYTEST_DONT_REWRITE"" in docstring
+E   TypeError: argument of type 'int' is not iterable
+```
+",6995257cf470d2143ad1683824962de4071c0eb7,18.85,1888,300,"### Analysis
+
+#### Root Cause
+
+The error occurs because the `pytest` plugin `_pytest.assertion.rewrite` attempts to inspect the docstring of the test function to determine whether it should be rewritten. When the first line of the test file is a number (e.g., `123`), Python interprets this as a docstring, which causes issues with the assertion rewriting logic. Specifically, the `isinstance(docstring, str)` check fails because the docstring is being treated as an integer, leading to a `TypeError`.
+
+#### Files Likely Involved
+
+The key files involved are:
+- `_pytest/assertion/rewrite.py`: This file contains the logic for asserting whether a test should be rewritten based on its docstring.
+- `testcases/基线/代理策略/SOCKS二级代理迭代二/在线用户/在线用户更新/上线用户/test_socks_user_011.py`: The problematic test file where the error occurs.
+
+#### High-Level Implementation Plan
+
+To address this issue, we need to ensure that the first line of the test file is correctly interpreted as a filename rather than a docstring. Here’s a high-level plan for resolving the issue:
+
+1. **Modify the Test File Naming Convention**:
+   - Ensure that the first line of each test file is a valid filename or a string that can be parsed correctly by the test runner. For instance, instead of starting with a number, start with a string like `""test_socks",True,0.116,198
+astropy__astropy-12907,astropy/astropy,"Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels
+Consider the following model:
+
+```python
+from astropy.modeling import models as m
+from astropy.modeling.separable import separability_matrix
+
+cm = m.Linear1D(10) & m.Linear1D(5)
+```
+
+It's separability matrix as you might expect is a diagonal:
+
+```python
+>>> separability_matrix(cm)
+array([[ True, False],
+       [False,  True]])
+```
+
+If I make the model more complex:
+```python
+>>> separability_matrix(m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5))
+array([[ True,  True, False, False],
+       [ True,  True, False, False],
+       [False, False,  True, False],
+       [False, False, False,  True]])
+```
+
+The output matrix is again, as expected, the outputs and inputs to the linear models are separable and independent of each other.
+
+If however, I nest these compound models:
+```python
+>>> separability_matrix(m.Pix2Sky_TAN() & cm)
+array([[ True,  True, False, False],
+       [ True,  True, False, False],
+       [False, False,  True,  True],
+       [False, False,  True,  True]])
+```
+Suddenly the inputs and outputs are no longer separable?
+
+This feels like a bug to me, but I might be missing something?
+",d16bfe05a744909de4b27f5875fe0d4ed41ce607,16.47,382,300,"### Analysis
+
+#### 1. Root Cause
+
+The root cause of this issue lies in how the `separability_matrix` function handles the composition of models. Specifically, the problem arises from the way the function processes nested CompoundModels. When a CompoundModel is composed with another model, the `separability_matrix` function incorrectly assumes that the inputs and outputs of the inner models are not separable, even if they should be.
+
+In the case of `m.Pix2Sky_TAN() & cm`, the `Pix2Sky_TAN()` model is a non-separable model (it has a dependency on its input), and when it is combined with `cm`, the `separability_matrix` function incorrectly flags the inputs and outputs as inseparable. This misinterpretation stems from the fact that the `separability_matrix` function does not properly account for the separability properties of the individual models within the CompoundModel.
+
+#### 2. Files Likely Involved
+
+The files likely involved in this issue include:
+
+- **`astropy/modeling/separable.py`**: This file contains the `separability_matrix` function, which needs to be reviewed and potentially corrected.
+- **`astropy/modeling/models.py`**: The `CompoundModel` class, which is used to create the nested models, may also need to be examined to ensure that the composition of models is handled correctly.
+
+#### 3. High-Level Implementation Plan
+
+To address this issue, the",True,0.304,197
