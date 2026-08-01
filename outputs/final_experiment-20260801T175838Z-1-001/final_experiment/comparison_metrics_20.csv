@@ -1,0 +1,4 @@
+Model,Tasks,Avg Inference Time,Avg Input Tokens,Avg Output Tokens,Avg Response Words,Success Rate,Keyword Coverage
+Baseline,20,10.942,646.65,887.6,424.15,1.0,0.619
+Multi-Agent,20,53.034,7509.0,8386.7,1429.8,1.0,0.656
+Fine-Tuned,20,11.51,646.65,851.25,373.55,1.0,0.525

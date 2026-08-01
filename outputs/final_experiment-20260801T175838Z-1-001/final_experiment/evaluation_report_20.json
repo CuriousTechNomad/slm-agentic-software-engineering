@@ -1,0 +1,9 @@
+{
+    "Baseline_vs_FineTuned": {
+        "Inference_Improvement_%": -5.19,
+        "Keyword_Improvement_%": -9.4
+    },
+    "Baseline_vs_MultiAgent": {
+        "Keyword_Improvement_%": 3.7
+    }
+}

@@ -1,0 +1,32 @@
+[
+    {
+        "Model":"Baseline",
+        "Tasks":20,
+        "Avg Inference Time":10.942,
+        "Avg Input Tokens":646.65,
+        "Avg Output Tokens":887.6,
+        "Avg Response Words":424.15,
+        "Success Rate":1.0,
+        "Keyword Coverage":0.619
+    },
+    {
+        "Model":"Multi-Agent",
+        "Tasks":20,
+        "Avg Inference Time":53.034,
+        "Avg Input Tokens":7509.0,
+        "Avg Output Tokens":8386.7,
+        "Avg Response Words":1429.8,
+        "Success Rate":1.0,
+        "Keyword Coverage":0.656
+    },
+    {
+        "Model":"Fine-Tuned",
+        "Tasks":20,
+        "Avg Inference Time":11.51,
+        "Avg Input Tokens":646.65,
+        "Avg Output Tokens":851.25,
+        "Avg Response Words":373.55,
+        "Success Rate":1.0,
+        "Keyword Coverage":0.525
+    }
+]
